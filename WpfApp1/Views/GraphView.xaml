@@ -10,6 +10,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <WpfPlot HorizontalAlignment="Left" Margin="292,0,0,0" VerticalAlignment="Center" >
+            <Behaviors:Interaction.Triggers>
+                <Behaviors:EventTrigger EventName="Loaded">
+                    <Behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfPlot}}}" />
+                </Behaviors:EventTrigger>
+            </Behaviors:Interaction.Triggers>
+        </WpfPlot>
+
     </Grid>
 </UserControl>
