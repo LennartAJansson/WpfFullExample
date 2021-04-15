@@ -10,6 +10,7 @@ namespace WpfApp1.ViewModels
 
             services.AddTransient<PeopleViewModel>();
             services.AddTransient<PersonViewModel>();
+            services.AddTransient<GraphViewModel>();
             return services;
         }
     }

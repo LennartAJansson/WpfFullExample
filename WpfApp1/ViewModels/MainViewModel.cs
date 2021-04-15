@@ -35,6 +35,7 @@ namespace WpfApp1.ViewModels
         public AsyncRelayCommand PeopleViewCommand { get; }
 
         public AsyncRelayCommand PersonViewCommand { get; }
+        public AsyncRelayCommand GraphViewCommand { get; }
 
         public MainViewModel(ILogger<MainViewModel> logger, IServiceProvider serviceProvider, IPeopleService service, ICurrentPerson currentPerson)
         {
@@ -44,6 +45,7 @@ namespace WpfApp1.ViewModels
             this.currentPerson = currentPerson;
             PeopleViewCommand = new AsyncRelayCommand(PeopleViewShow);
             PersonViewCommand = new AsyncRelayCommand(PersonViewShow);
+            GraphViewCommand = new AsyncRelayCommand(GraphViewShow);
         }
 
         private Task PeopleViewShow()
@@ -57,6 +59,13 @@ namespace WpfApp1.ViewModels
         private Task PersonViewShow()
         {
             SelectedRightView = SelectedRightView != null ? null : serviceProvider.GetRequiredService<PersonView>();
+            Status = $"Opened {nameof(SelectedRightView)}";
+
+            return Task.CompletedTask;
+        }
+        private Task GraphViewShow()
+        {
+            SelectedRightView = SelectedRightView != null ? null : serviceProvider.GetRequiredService<GraphView>();
             Status = $"Opened {nameof(SelectedRightView)}";
 
             return Task.CompletedTask;

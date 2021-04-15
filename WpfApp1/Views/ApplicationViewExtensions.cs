@@ -9,6 +9,7 @@ namespace WpfApp1.Views
             services.AddTransient<MainWindow>();
             services.AddTransient<PeopleView>();
             services.AddTransient<PersonView>();
+            services.AddTransient<GraphView>();
             return services;
         }
     }

@@ -14,7 +14,7 @@
             <Button Content="Left" Width="120" Height="32" Command="{Binding PeopleViewCommand}" />
             <Button Content="Right" Width="120" Height="32" Command="{Binding PersonViewCommand}" />
 
-            <Button Content="Animated" Width="120" Height="32">
+            <Button Content="Graphs" Width="120" Height="32" Command="{Binding GraphViewCommand}" >
                 <Button.Background>
                     <SolidColorBrush x:Name="AnimBrush" />
                 </Button.Background>
