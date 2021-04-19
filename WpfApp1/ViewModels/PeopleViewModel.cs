@@ -9,6 +9,7 @@ using WpfApp1.Services;
 namespace WpfApp1.ViewModels
 {
 #pragma warning disable IDE0052 // Remove unread private members
+    //#pragma warning disable CS0414 // Remove unread private members
 
     public class PeopleViewModel : ObservableObject
     {
@@ -42,4 +43,5 @@ namespace WpfApp1.ViewModels
     }
 
 #pragma warning restore IDE0052 // Remove unread private members
+    //#pragma warning restore CS0414 // Remove unread private members
 }

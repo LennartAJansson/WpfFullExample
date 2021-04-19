@@ -5,9 +5,9 @@ using WpfApp1.Models;
 namespace WpfApp1.Validators
 {
     //FluentValidation is a framework that allows you to define codebased validators 
-    public class SSNValidator : AbstractValidator<string>
+    public class SsnValidator : AbstractValidator<string>
     {
-        public SSNValidator()
+        public SsnValidator()
         {
             RuleFor(ssn => new SocialSecurityNumber(ssn))
                 .Must(socialSecurityNumber => socialSecurityNumber.IsValid)
@@ -18,20 +18,28 @@ namespace WpfApp1.Validators
 }
 /*
     //https://docs.fluentvalidation.net/en/latest/start.html
+
+    The FluentValidator is ment to be used in code, not in xaml
+    For validation in xaml using this SsnValidator see: 
+    SsnValidatorRule.cs
+
+
     Person person = new();
     //Populate person
-    SSNValidator validator = new();
-    ValidationResult result = validator.Validate(person.SSN.SSN);
 
-    //Or validator.Validate(person, options => options.ThrowOnFailures());
-    //Or validator.ValidateAndThrow(person);
+    SsnValidator validator = new();
+    ValidationResult result = validator.Validate(person.Ssn);
+
+    //Or validator.Validate(person.Ssn, options => options.ThrowOnFailures());
+    //Or validator.ValidateAndThrow(person.Ssn);
+
     if (!result.IsValid)
     {
         foreach (var failure in result.Errors)
         {
             Console.WriteLine($"Property {failure.PropertyName} invalid. Error: {failure.ErrorMessage}");
         }
-        //string allMessages = result.ToString("~");     
-        //In this case, each message will be separated with a `~`
+        //string allMessages = result.ToString("#");     
+        //In this case, each message will be separated with a `#`
     }
 */

@@ -50,7 +50,7 @@ namespace WpfApp1.ViewModels
 
         private Task PeopleViewShow()
         {
-            SelectedLeftView = SelectedLeftView != null ? null : serviceProvider.GetRequiredService<PeopleView>();
+            SelectedLeftView = serviceProvider.GetRequiredService<PeopleView>();
             Status = $"Opened {nameof(SelectedLeftView)}";
 
             return Task.CompletedTask;
@@ -58,14 +58,14 @@ namespace WpfApp1.ViewModels
 
         private Task PersonViewShow()
         {
-            SelectedRightView = SelectedRightView != null ? null : serviceProvider.GetRequiredService<PersonView>();
+            SelectedRightView = serviceProvider.GetRequiredService<PersonView>();
             Status = $"Opened {nameof(SelectedRightView)}";
 
             return Task.CompletedTask;
         }
         private Task GraphViewShow()
         {
-            SelectedRightView = SelectedRightView != null ? null : serviceProvider.GetRequiredService<GraphView>();
+            SelectedRightView = serviceProvider.GetRequiredService<GraphView>();
             Status = $"Opened {nameof(SelectedRightView)}";
 
             return Task.CompletedTask;

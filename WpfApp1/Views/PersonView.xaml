@@ -16,11 +16,15 @@
         <converters:AdultConverter x:Key="adultConverter" />
         <converters:TrueFalseConverter x:Key="trueFalseConverter" />
         <converters:YesNoConverter x:Key="yesNoConverter" />
-        <validators:SSNValidator x:Key="ssnValidator" />
+        <!--<validators:SSNValidator x:Key="ssnValidator" />-->
         
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
             <!--<Setter Property="Margin" Value="5" />-->
             <!--<Setter Property="VerticalAlignment" Value="Center" />-->
+        </Style>
+
+        <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,0,8" />
         </Style>
         
         <Style x:Key="CustomErrorControlOnErrorStyle" TargetType="TextBox" BasedOn="{StaticResource DefaultTextBoxStyle}">
@@ -51,7 +55,7 @@
                             <TextBox.Text>
                                 <Binding Path="Person.Ssn" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                                     <Binding.ValidationRules>
-                                        <validators:SSNValidatorRule ValidatesOnTargetUpdated="True" />
+                                        <validators:SsnValidatorRule ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -100,7 +104,7 @@
                     <TextBox.Text>
                         <Binding Path="Person.Ssn" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
-                                <validators:SSNValidatorRule ValidatesOnTargetUpdated="True" />
+                                <validators:SsnValidatorRule ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -140,11 +144,11 @@
         <TabItem Header="Converters">
             <StackPanel Orientation="Vertical">
                 <CheckBox Content="Adult or Child" IsChecked="{Binding Person.IsAdult, Converter={StaticResource adultConverter}}"/>
-                <TextBlock Text="{Binding Person.IsAdult}" Margin="0,0,0,8"/>
+                <TextBlock Text="{Binding Person.IsAdult}" Style="{StaticResource DefaultTextBlockStyle}"/>
                 <CheckBox Content="Yes or No" IsChecked="{Binding Person.IsYes, Converter={StaticResource yesNoConverter}}"/>
-                <TextBlock Text="{Binding Person.IsYes}" Margin="0,0,0,8"/>
+                <TextBlock Text="{Binding Person.IsYes}" Style="{StaticResource DefaultTextBlockStyle}"/>
                 <CheckBox Content="True or False" IsChecked="{Binding Person.IsTrue, Converter={StaticResource trueFalseConverter}}"/>
-                <TextBlock Text="{Binding Person.IsTrue}" Margin="0,0,0,8"/>
+                <TextBlock Text="{Binding Person.IsTrue}" Style="{StaticResource DefaultTextBlockStyle}"/>
             </StackPanel>
         </TabItem>
     </TabControl>

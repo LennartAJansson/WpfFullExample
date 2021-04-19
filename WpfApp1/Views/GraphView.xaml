@@ -9,9 +9,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:GraphViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--
-             Width="{Binding Width}" Height="{Binding Height}"
-    -->
+    
     <StackPanel Orientation="Vertical">
         <ToolBar x:Name="toolBar" >
             <ToolBarPanel Visibility="Visible" Orientation="Horizontal">
@@ -20,13 +18,12 @@
             </ToolBarPanel>
         </ToolBar>
         
-        <WpfPlot HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <WpfPlot HorizontalAlignment="Center" VerticalAlignment="Center">
             <Behaviors:Interaction.Triggers>
                 <Behaviors:EventTrigger EventName="Loaded">
                     <Behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfPlot}}}" />
                 </Behaviors:EventTrigger>
             </Behaviors:Interaction.Triggers>
         </WpfPlot>
-
     </StackPanel>
 </UserControl>

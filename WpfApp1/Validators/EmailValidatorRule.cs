@@ -8,6 +8,8 @@ namespace WpfApp1.Validators
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var ev = new EmailValidator();
+            //The next line must be defined with its namespace because of name conflicts between
+            //FluentValidation.Results.ValidationResult and System.Windows.Controls.ValidationResult
             FluentValidation.Results.ValidationResult result = ev.Validate(value as string);
 
             if (!result.IsValid)
@@ -24,30 +26,33 @@ namespace WpfApp1.Validators
 /*
  * https://docs.microsoft.com/en-us/dotnet/desktop/wpf/data/how-to-implement-binding-validation?view=netframeworkdesktop-4.8&viewFallbackFrom=netdesktop-5.0
  * 
-<TextBox Validation.ErrorTemplate="{StaticResource ValidationTemplate}" Style="{StaticResource TextBoxInError}">
-  <TextBox.Text>
-    <Binding Path="Person.Email" UpdateSourceTrigger="PropertyChanged">
-      <Binding.ValidationRules>
-        <validators:EmailValidatorRule />
-      </Binding.ValidationRules>
-    </Binding>
-  </TextBox.Text>
-</TextBox>
+    In the controls section:
 
-<UserControl.Resources>
-    <ControlTemplate x:Key="ValidationTemplate">
-        <DockPanel>
-            <TextBlock Foreground="Red" FontWeight="ExtraBold">!</TextBlock>
-            <AdornedElementPlaceholder/>
-        </DockPanel>
-    </ControlTemplate>
+    <TextBox Style="{StaticResource CustomErrorControlOnErrorStyle}">
+        <TextBox.Text>
+            <Binding Path="Person.Email" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <validators:EmailValidatorRule ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox.Text>
+    </TextBox>
 
-    <Style x:Key="TextBoxInError" TargetType="{x:Type TextBox}">
-        <Style.Triggers>
-            <Trigger Property="Validation.HasError" Value="true">
-                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-</UserControl.Resources>
+In the UserControl/Window/Application resources:
+
+    <UserControl.Resources>
+        <Style x:Key="CustomErrorControlOnErrorStyle" TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="placeholder" />
+                            <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red"
+                                        Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)/ErrorContent}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 */

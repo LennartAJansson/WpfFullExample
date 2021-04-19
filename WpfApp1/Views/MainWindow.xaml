@@ -16,6 +16,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
             <RowDefinition Height="38" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
@@ -26,12 +27,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <local:ToolBar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" />
+        <local:MainMenu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" />
+        <local:ToolBar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" />
 
-        <ContentControl Content="{Binding SelectedLeftView}" Grid.Column="0" Grid.Row="1" />
-        <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" />
-        <ContentControl Content="{Binding SelectedRightView}" Grid.Column="2" Grid.Row="1" />
+        <ContentControl Content="{Binding SelectedLeftView}" Grid.Column="0" Grid.Row="2" />
+        <GridSplitter Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" />
+        <ContentControl Content="{Binding SelectedRightView}" Grid.Column="2" Grid.Row="2" />
 
-        <local:StatusBar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" />
+        <local:StatusBar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" />
     </Grid>
 </Window>

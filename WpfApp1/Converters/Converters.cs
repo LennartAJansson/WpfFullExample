@@ -8,16 +8,22 @@ namespace WpfApp1.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            return value.ToString().ToUpper() == "ADULT" ? true : (object)false;
+            bool adultOrChild = false;
+
+            if (value != null)
+                adultOrChild = value.ToString().ToUpper() == "ADULT";
+
+            return adultOrChild ? true : (object)false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            bool adult = System.Convert.ToBoolean(value);
+            bool adultOrChild = false;
 
-            return adult ? "Adult" : "Child";
+            if (value != null)
+                adultOrChild = System.Convert.ToBoolean(value);
+
+            return adultOrChild ? "Adult" : "Child";
         }
     }
 
@@ -25,16 +31,22 @@ namespace WpfApp1.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            return value.ToString().ToUpper() == "YES" ? true : (object)false;
+            bool yesOrNo = false;
+
+            if (value != null)
+                yesOrNo = value.ToString().ToUpper() == "YES";
+
+            return yesOrNo ? true : (object)false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            bool yesNo = System.Convert.ToBoolean(value);
+            bool yesOrNo = false;
 
-            return yesNo ? "Yes" : "No";
+            if (value != null)
+                yesOrNo = System.Convert.ToBoolean(value);
+
+            return yesOrNo ? "Yes" : "No";
         }
     }
 
@@ -42,16 +54,22 @@ namespace WpfApp1.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            return value.ToString().ToUpper() == "TRUE" ? true : (object)false;
+            bool trueOrFalse = false;
+
+            if (value != null)
+                trueOrFalse = value.ToString().ToUpper() == "TRUE";
+
+            return trueOrFalse ? true : (object)false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //TODO Handle if null
-            bool trueFalse = System.Convert.ToBoolean(value);
+            bool trueOrFalse = false;
 
-            return trueFalse ? "True" : "False";
+            if (value != null)
+                trueOrFalse = System.Convert.ToBoolean(value);
+
+            return trueOrFalse ? "True" : "False";
         }
     }
 }

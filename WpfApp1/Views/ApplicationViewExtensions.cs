@@ -10,6 +10,7 @@ namespace WpfApp1.Views
             services.AddTransient<PeopleView>();
             services.AddTransient<PersonView>();
             services.AddTransient<GraphView>();
+            //Do not add those who should use a parent viewmodel from others, ToolBars, StatusBar
             return services;
         }
     }

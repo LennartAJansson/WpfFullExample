@@ -12,19 +12,19 @@ namespace WpfApp1.ViewModels
     {
         public WpfPlot PlotControl { get; set; }
 
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-        private int width;
+        //public int Width
+        //{
+        //    get { return width; }
+        //    set { width = value; }
+        //}
+        //private int width;
 
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
-        private int height;
+        //public int Height
+        //{
+        //    get { return height; }
+        //    set { height = value; }
+        //}
+        //private int height;
 
 
         public IEnumerable<string> ChartTypes { get; set; } = new string[] { "Line", "Scatter", "Spider" };
