@@ -15,13 +15,11 @@ namespace WpfApp1.ViewModels
         private Person person;
 
         private readonly ILogger<MainViewModel> logger;
-        private readonly IPeopleService service;
         private readonly ICurrentPerson currentPerson;
 
-        public PersonViewModel(ILogger<MainViewModel> logger, IPeopleService service, ICurrentPerson currentPerson)
+        public PersonViewModel(ILogger<MainViewModel> logger, ICurrentPerson currentPerson)
         {
             this.logger = logger;
-            this.service = service;
             this.currentPerson = currentPerson;
             Person = currentPerson.Person;
             currentPerson.PersonChanged += CurrentPerson_PersonChanged;

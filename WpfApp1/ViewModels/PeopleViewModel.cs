@@ -38,8 +38,11 @@ namespace WpfApp1.ViewModels
             this.logger = logger;
             this.service = service;
             this.currentPerson = currentPerson;
+            this.currentPerson.PersonChanged += CurrentPerson_PersonChanged;
             People = service.GetPeople().Result;
         }
+
+        private void CurrentPerson_PersonChanged(Person person) => SelectedPerson = person;
     }
 
 #pragma warning restore IDE0052 // Remove unread private members

@@ -6,7 +6,6 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Threading.Tasks;
 
-using WpfApp1.Services;
 using WpfApp1.Views;
 
 namespace WpfApp1.ViewModels
@@ -17,8 +16,6 @@ namespace WpfApp1.ViewModels
     {
         private readonly ILogger<MainViewModel> logger;
         private readonly IServiceProvider serviceProvider;
-        private readonly IPeopleService service;
-        private readonly ICurrentPerson currentPerson;
 
         public object SelectedLeftView { get => selectedLeftView; set => SetProperty(ref selectedLeftView, value); }
 
@@ -37,12 +34,10 @@ namespace WpfApp1.ViewModels
         public AsyncRelayCommand PersonViewCommand { get; }
         public AsyncRelayCommand GraphViewCommand { get; }
 
-        public MainViewModel(ILogger<MainViewModel> logger, IServiceProvider serviceProvider, IPeopleService service, ICurrentPerson currentPerson)
+        public MainViewModel(ILogger<MainViewModel> logger, IServiceProvider serviceProvider)
         {
             this.logger = logger;
             this.serviceProvider = serviceProvider;
-            this.service = service;
-            this.currentPerson = currentPerson;
             PeopleViewCommand = new AsyncRelayCommand(PeopleViewShow);
             PersonViewCommand = new AsyncRelayCommand(PersonViewShow);
             GraphViewCommand = new AsyncRelayCommand(GraphViewShow);
