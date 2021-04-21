@@ -4,10 +4,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:WpfApp1"
+             xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
              xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/aero.normalcolor.xaml" />
+                <ResourceDictionary Source="/aero2.normalcolor.xaml" />
+                <ResourceDictionary Source="/aerolite.normalcolor.xaml" />
+                <ResourceDictionary Source="/classic.xaml" />
+                <ResourceDictionary Source="/luna.homestead.xaml" />
+                <ResourceDictionary Source="/luna.metallic.xaml" />
+                <ResourceDictionary Source="/luna.normalcolor.xaml" />
+                <ResourceDictionary Source="/royale.normalcolor.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Light.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/AdonisUI.ClassicTheme;component/Resources.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Window">
                 <Setter Property="FontSize" Value="16" />
             </Style>

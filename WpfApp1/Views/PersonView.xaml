@@ -19,8 +19,8 @@
         <!--<validators:SSNValidator x:Key="ssnValidator" />-->
         
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
-            <!--<Setter Property="Margin" Value="5" />-->
-            <!--<Setter Property="VerticalAlignment" Value="Center" />-->
+            <Setter Property="Margin" Value="0,0,0,12" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
         <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">

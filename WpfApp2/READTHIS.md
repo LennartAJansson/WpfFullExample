@@ -130,3 +130,8 @@ public partial class App : Application
 ```
 
 Du ska nu ha en fullt körbar applikation, en så kallad BoilerPlate, alltså den innehåller hela plattformen för att kunna bygga en MVVM-baserad applikation, den innehåller fasta positioner/platser för att definiera allt på ett bra sätt.
+
+### Börja bygga MVVM
+
+Det första vi ska göra är att lägga till en ViewModel för MainWindow, vi kallar den MainViewModel
+

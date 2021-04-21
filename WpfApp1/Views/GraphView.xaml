@@ -18,7 +18,7 @@
             </ToolBarPanel>
         </ToolBar>
         
-        <WpfPlot HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WpfPlot HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Behaviors:Interaction.Triggers>
                 <Behaviors:EventTrigger EventName="Loaded">
                     <Behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WpfPlot}}}" />

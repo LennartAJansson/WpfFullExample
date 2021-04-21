@@ -30,7 +30,6 @@ namespace WpfApp1.ViewModels
         private string status;
 
         public AsyncRelayCommand PeopleViewCommand { get; }
-
         public AsyncRelayCommand PersonViewCommand { get; }
         public AsyncRelayCommand GraphViewCommand { get; }
 
@@ -46,7 +45,7 @@ namespace WpfApp1.ViewModels
         private Task PeopleViewShow()
         {
             SelectedLeftView = serviceProvider.GetRequiredService<PeopleView>();
-            Status = $"Opened {nameof(SelectedLeftView)}";
+            Status = $"Opened {nameof(PeopleView)}";
 
             return Task.CompletedTask;
         }
@@ -54,14 +53,14 @@ namespace WpfApp1.ViewModels
         private Task PersonViewShow()
         {
             SelectedRightView = serviceProvider.GetRequiredService<PersonView>();
-            Status = $"Opened {nameof(SelectedRightView)}";
+            Status = $"Opened {nameof(PersonView)}";
 
             return Task.CompletedTask;
         }
         private Task GraphViewShow()
         {
             SelectedRightView = serviceProvider.GetRequiredService<GraphView>();
-            Status = $"Opened {nameof(SelectedRightView)}";
+            Status = $"Opened {nameof(GraphView)}";
 
             return Task.CompletedTask;
         }

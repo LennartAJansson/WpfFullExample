@@ -9,28 +9,15 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="40" d:DesignWidth="800">
-    <ToolBar>
-        <ToolBarPanel Visibility="Visible" Orientation="Horizontal">
-            <Button Content="Left" Width="120" Height="32" Command="{Binding PeopleViewCommand}" />
-            <Button Content="Right" Width="120" Height="32" Command="{Binding PersonViewCommand}" />
-
-            <Button Content="Graphs" Width="120" Height="32" Command="{Binding GraphViewCommand}" >
-                <Button.Background>
-                    <SolidColorBrush x:Name="AnimBrush" />
-                </Button.Background>
-                <Button.Triggers>
-                    <EventTrigger RoutedEvent="Button.Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetName="AnimBrush"
-                                                Storyboard.TargetProperty="(SolidColorBrush.Color)"
-                                                From="Red" To="LightGray" Duration="0:0:1"
-                                                AutoReverse="True" RepeatBehavior="Forever" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Button.Triggers>
-            </Button>
-        </ToolBarPanel>
-    </ToolBar>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Left" Width="120" Height="32" Command="{Binding PeopleViewCommand}" />
+            </ToolBar>
+            <ToolBar>
+                <Button Content="Right" Width="120" Height="32" Command="{Binding PersonViewCommand}" />
+                <Button Content="Graphs" Width="120" Height="32" Command="{Binding GraphViewCommand}" />
+            </ToolBar>
+        </ToolBarTray>
+    </DockPanel>
 </UserControl>

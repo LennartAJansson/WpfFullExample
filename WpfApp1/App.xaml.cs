@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using System.Windows;
+using Microsoft.Windows.Themes;
 
 using WpfApp1.Configuration;
 using WpfApp1.Services;
@@ -20,6 +21,7 @@ namespace WpfApp1
 
         public App()
         {
+            //Microsoft.Windows.Themes.ThemeColor.Metallic
             host = Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(builder => builder.AddJsonFile("WindowsInfo.json", optional: true))
                 .ConfigureServices((context, services) => services

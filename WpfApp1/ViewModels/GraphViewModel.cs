@@ -12,22 +12,8 @@ namespace WpfApp1.ViewModels
     {
         public WpfPlot PlotControl { get; set; }
 
-        //public int Width
-        //{
-        //    get { return width; }
-        //    set { width = value; }
-        //}
-        //private int width;
-
-        //public int Height
-        //{
-        //    get { return height; }
-        //    set { height = value; }
-        //}
-        //private int height;
-
-
         public IEnumerable<string> ChartTypes { get; set; } = new string[] { "Line", "Scatter", "Spider" };
+
         public string SelectedChartType
         {
             get => selectedChartType;
@@ -84,8 +70,8 @@ namespace WpfApp1.ViewModels
         private Task LoadedWpfPlot(WpfPlot plotControl)
         {
             PlotControl = plotControl;
-            PlotControl.Width = 400;// Width;
-            PlotControl.Height = 400;// Height;
+            PlotControl.Width = 600;// Width;
+            PlotControl.Height = 600;// Height;
             SelectedChartType = "Spider";
 
             return Task.CompletedTask;
