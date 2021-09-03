@@ -12,10 +12,11 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button Content="Left" Width="120" Height="32" Command="{Binding PeopleViewCommand}" />
+                <Button Content="People" Width="120" Height="32" Command="{Binding PeopleViewCommand}" />
             </ToolBar>
             <ToolBar>
-                <Button Content="Right" Width="120" Height="32" Command="{Binding PersonViewCommand}" />
+                <Button Content="User" Width="120" Height="32" Command="{Binding UserViewCommand}" />
+                <Button Content="Person" Width="120" Height="32" Command="{Binding PersonViewCommand}" />
                 <Button Content="Graphs" Width="120" Height="32" Command="{Binding GraphViewCommand}" />
             </ToolBar>
         </ToolBarTray>

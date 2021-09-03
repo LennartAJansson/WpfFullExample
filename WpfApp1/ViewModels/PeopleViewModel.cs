@@ -41,7 +41,6 @@ namespace WpfApp1.ViewModels
             People = service.GetPeople().Result;
         }
     }
-
 #pragma warning restore IDE0052 // Remove unread private members
     //#pragma warning restore CS0414 // Remove unread private members
 }

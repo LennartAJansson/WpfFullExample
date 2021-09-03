@@ -10,11 +10,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="800">
     <Menu>
+        <Menu.ItemsPanel>
+            <ItemsPanelTemplate>
+                <DockPanel HorizontalAlignment="Stretch"/>
+            </ItemsPanelTemplate>
+        </Menu.ItemsPanel>
         <MenuItem Header="File">
-            <MenuItem Header="Show People" Command="{Binding PeopleViewCommand}" />
-            <MenuItem Header="Show Person" Command="{Binding PersonViewCommand}" />
-            <MenuItem Header="Show Graph" Command="{Binding GraphViewCommand}" />
+            <MenuItem Header="Show Me the People" Command="{Binding PeopleViewCommand}" />
+            <MenuItem Header="Show Me a Person" Command="{Binding PersonViewCommand}" />
+            <MenuItem Header="Show a fucking Graph" Command="{Binding GraphViewCommand}" />
         </MenuItem>
-            
+        <MenuItem Header="About..." HorizontalAlignment="Right"/>
     </Menu>
 </UserControl>

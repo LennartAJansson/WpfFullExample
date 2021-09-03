@@ -4,9 +4,9 @@ Börja med att skapa en ny tom WPF application för NET 5
 
 Glöm inte att efterhand som du lägger till kod så får du kontrollpunkta vissa fel så den skapar usings för det som saknas...
 
-Lägg till följande referenser:
+Lägg till följande referenser i csproj-filen:
 
-```
+```xml
 <PackageReference Include="FluentValidation" Version="10.0.3" />
 <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.0.3" />
 <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
@@ -15,6 +15,8 @@ Lägg till följande referenser:
 <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
 <PackageReference Include="ScottPlot.WPF" Version="4.1.12-beta" />
 ```
+
+Ändra <Project Sdk="Microsoft.NET.Sdk"> till att vara <Project Sdk="Microsoft.NET.Sdk.Worker">
 
 Skapa mappstruktur med följande mappar/namespace:
 
@@ -28,7 +30,7 @@ Skapa mappstruktur med följande mappar/namespace:
 
 I de mappar som ska innehålla klasser enligt ovan så ska dessa se ut så här:
 
-```
+```c#
 public static class ConfigurationExtensions
 {
     public static IServiceCollection AddApplicationConfiguration(this IServiceCollection services, HostBuilderContext context)
@@ -65,7 +67,7 @@ public static class ViewExtensions
 
 Flytta MainWindow.xaml och MainWindow.xaml.cs till mappen Views, glöm inte att ändra:
 
-I MainWindow.xaml:
+I **MainWindow.xaml**:
 
 ```
 x:Class="WpfApp2.MainWindow"
@@ -77,7 +79,7 @@ Ska vara
 xmlns:local="clr-namespace:WpfApp2.Views"
 ```
 
-I MainWindow.xaml.cs:
+I **MainWindow.xaml.cs**:
 
 ```
 namespace WpfApp2
@@ -89,7 +91,7 @@ Ta bort StartupUri från App.xaml, den ska inte finnas där!
 
 I App.xaml.cs:
 
-```
+```c#
 public partial class App : Application
 {
     private readonly IHost host;

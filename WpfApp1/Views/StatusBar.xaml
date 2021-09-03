@@ -18,12 +18,16 @@
             <Label Content="This is another status" />
         </StatusBarItem>
         <Separator />
-        <StatusBarItem>
+        <StatusBarItem Visibility="Visible">
             <StackPanel Orientation="Horizontal">
                 <CheckBox Content="Check me" IsChecked="True" VerticalAlignment="Center" />
                 <Label Content="Damned!!!" />
                 <TextBox Width="120" Text="This is a textbox" VerticalAlignment="Center" />
             </StackPanel>
+        </StatusBarItem>
+        <Separator />
+        <StatusBarItem HorizontalAlignment="Right">
+            <Button Content="About..."/>
         </StatusBarItem>
     </StatusBar>
 </UserControl>

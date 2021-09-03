@@ -95,6 +95,7 @@
                         <TextBox Text="{Binding Path=Person.Telephone}" />
                     </StackPanel>
                 </Expander>
+                <PasswordBox x:Name="passwordBox" Width="120" PasswordChanged="passwordBox_PasswordChanged"/>
             </StackPanel>
         </TabItem>
         <TabItem Header="Name info">

@@ -72,6 +72,21 @@ namespace WpfApp1.Converters
             return trueOrFalse ? "True" : "False";
         }
     }
+    public class BoolToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((bool)value)
+                return "Visible";
+            else
+                return "Hidden";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString().ToUpper() == "VISIBLE";
+        }
+    }
 }
 
 /*

@@ -9,13 +9,14 @@
         xmlns:viewmodels="clr-namespace:WpfApp1.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed">
+        Title="MainWindow" 
+        Height="450" 
+        Width="800" 
+        Closed="Window_Closed">
+    
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
     </Window.Style>
-    <!--<Window.Resources>
-        <ResourceDictionary Source="..\Templates\Templates.xaml" />
-    </Window.Resources>-->
 
     <Grid>
         <Grid.RowDefinitions>

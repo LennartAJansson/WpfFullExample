@@ -9,7 +9,6 @@ using WpfApp1.ViewModels;
 namespace WpfApp1.Views
 {
 #pragma warning disable IDE0052 // Remove unread private members
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -53,6 +52,5 @@ namespace WpfApp1.Views
             System.IO.File.WriteAllText(@".\WindowsInfo.json", json);
         }
     }
-
 #pragma warning restore IDE0052 // Remove unread private members
 }

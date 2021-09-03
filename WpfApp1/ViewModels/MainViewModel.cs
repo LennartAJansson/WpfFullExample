@@ -10,8 +10,6 @@ using WpfApp1.Views;
 
 namespace WpfApp1.ViewModels
 {
-#pragma warning disable IDE0052 // Remove unread private members
-
     public class MainViewModel : ObservableObject
     {
         private readonly ILogger<MainViewModel> logger;
@@ -29,6 +27,7 @@ namespace WpfApp1.ViewModels
 
         private string status;
 
+        public AsyncRelayCommand UserViewCommand { get; }
         public AsyncRelayCommand PeopleViewCommand { get; }
         public AsyncRelayCommand PersonViewCommand { get; }
         public AsyncRelayCommand GraphViewCommand { get; }
@@ -37,9 +36,18 @@ namespace WpfApp1.ViewModels
         {
             this.logger = logger;
             this.serviceProvider = serviceProvider;
+            UserViewCommand = new AsyncRelayCommand(UserViewShow);
             PeopleViewCommand = new AsyncRelayCommand(PeopleViewShow);
             PersonViewCommand = new AsyncRelayCommand(PersonViewShow);
             GraphViewCommand = new AsyncRelayCommand(GraphViewShow);
+        }
+
+        private Task UserViewShow()
+        {
+            SelectedRightView = serviceProvider.GetRequiredService<UserView>();
+            Status = $"Opened {nameof(UserView)}";
+
+            return Task.CompletedTask;
         }
 
         private Task PeopleViewShow()
@@ -65,5 +73,4 @@ namespace WpfApp1.ViewModels
             return Task.CompletedTask;
         }
     }
-#pragma warning restore IDE0052 // Remove unread private members
 }
