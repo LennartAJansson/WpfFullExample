@@ -14,25 +14,25 @@ namespace WpfApp1.Services
                 new Person()
                 {
                     Id=1,
-                    Ssn="196101231451",
-                    Firstname="Lennart",
-                    Lastname="Jansson",
-                    Address="Klockaregatan 2a",
-                    Postalcode="25200",
-                    City="Helsingborg",
-                    Email="lennart.jansson@nexergroup.com",
-                    Telephone="+46734400114"},
+                    Ssn="EnterASSNHere",
+                    Firstname="Firstname",
+                    Lastname="Lastname",
+                    Address="Address",
+                    Postalcode="12345",
+                    City="City",
+                    Email="a@b.c",
+                    Telephone="+4612345678"},
                 new Person()
                 {
                     Id=2,
-                    Ssn="200111234076",
-                    Firstname="Adam",
-                    Lastname="Häggström",
-                    Address="Nordanväg 6c",
-                    Postalcode="24438",
-                    City="Kävlinge",
-                    Email="adh01@hotmail.se",
-                    Telephone="+46723080868"}
+                    Ssn="EnterASSNHere",
+                    Firstname="FirstName",
+                    Lastname="Lastname",
+                    Address="Address",
+                    Postalcode="12345",
+                    City="City",
+                    Email="a@b.c",
+                    Telephone="+4612345678"}
             };
             return Task.FromResult(p);
         }
