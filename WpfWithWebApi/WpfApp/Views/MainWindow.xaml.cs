@@ -1,24 +1,56 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Windows;
 
-using System.Windows;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
+using WpfWithWebApi.Wpf.Configuration;
 using WpfWithWebApi.Wpf.ViewModels;
 
 namespace WpfWithWebApi.Wpf.Views
 {
+#pragma warning disable IDE0052 // Remove unread private members
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private readonly ILogger<MainWindow> logger;
+        private readonly MainViewModel viewModel;
+        private readonly WindowsInfo windowsInfo;
 
-        public MainWindow(ILogger<MainWindow> logger, MainViewModel viewModel)
+        public MainWindow(ILogger<MainWindow> logger, MainViewModel viewModel, IOptions<WindowsInfo> options)
         {
             InitializeComponent();
             this.logger = logger;
+            this.viewModel = viewModel;
             DataContext = viewModel;
-            this.logger.LogDebug("Constructing MainWindow");
+            windowsInfo = options.Value;
+            if (windowsInfo.Width != 0 && windowsInfo.Height != 0)
+            {
+                Height = windowsInfo.Height;
+                Width = windowsInfo.Width;
+                Left = windowsInfo.Left;
+                Top = windowsInfo.Top;
+                WindowState = windowsInfo.State;
+            }
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            windowsInfo.Height = Height;
+            windowsInfo.Width = Width;
+            windowsInfo.Left = Left;
+            windowsInfo.Top = Top;
+            windowsInfo.State = WindowState;
+
+            WindowsInfoRoot root = new()
+            {
+                WindowsInfo = windowsInfo
+            };
+
+            string json = System.Text.Json.JsonSerializer.Serialize(root);
+            System.IO.File.WriteAllText(@".\WindowsInfo.json", json);
         }
     }
+#pragma warning restore IDE0052 // Remove unread private members
 }

@@ -1,69 +1,78 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using System.Threading.Tasks;
+
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using WpfWithWebApi.Model;
-using WpfWithWebApi.Wpf.Services;
+using WpfWithWebApi.Wpf.Views;
 
 namespace WpfWithWebApi.Wpf.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
         private readonly ILogger<MainViewModel> logger;
-        private readonly IPersonService personService;
+        private readonly IServiceProvider serviceProvider;
 
-        public IEnumerable<Person> People
-        {
-            get => people;
-            set => SetProperty(ref people, value);
-        }
+        public object SelectedLeftView { get => selectedLeftView; set => SetProperty(ref selectedLeftView, value); }
 
-        private IEnumerable<Person> people;
+        private object selectedLeftView;
 
-        public Person SelectedPerson
-        {
-            get => selectedPerson;
-            set => SetProperty(ref selectedPerson, value);
-        }
+        public object SelectedRightView { get => selectedRightView; set => SetProperty(ref selectedRightView, value); }
 
-        private Person selectedPerson;
+        private object selectedRightView;
 
-        public Task MyTask
-        {
-            get => myTask;
-            private set => SetPropertyAndNotifyOnCompletion(ref myTask, value);
-        }
+        public string Status { get => status; set => SetProperty(ref status, value); }
 
-        private TaskNotifier myTask;
+        private string status;
 
-        public RelayCommand GetCommand { get; }
+        public AsyncRelayCommand UserViewCommand { get; }
+        public AsyncRelayCommand PeopleViewCommand { get; }
+        public AsyncRelayCommand PersonViewCommand { get; }
+        public AsyncRelayCommand GraphViewCommand { get; }
 
-        public MainViewModel(ILogger<MainViewModel> logger, IPersonService personService)
+        public MainViewModel(ILogger<MainViewModel> logger, IServiceProvider serviceProvider)
         {
             this.logger = logger;
-            this.personService = personService;
-            GetCommand = new RelayCommand(async () => await GetAllAsync());
+            this.serviceProvider = serviceProvider;
+            UserViewCommand = new AsyncRelayCommand(async () => await UserViewShow());
+            PeopleViewCommand = new AsyncRelayCommand(async () => await PeopleViewShow());
+            PersonViewCommand = new AsyncRelayCommand(async () => await PersonViewShow());
+            GraphViewCommand = new AsyncRelayCommand(async () => await GraphViewShow());
 
-            //TODO Maybe use messaging instead to initiate the ViewModels?
-            GetCommand.Execute(null);
+            PeopleViewCommand.Execute(null);
         }
 
-        public async Task GetAllAsync()
+        private Task UserViewShow()
         {
-            logger.LogInformation("Calling personService");
-            People = await personService.GetAllPeopleAsync();
+            SelectedRightView = serviceProvider.GetRequiredService<UserView>();
+            Status = $"Opened {nameof(UserView)}";
 
-            //Person person = await personService.GetPersonAsync(1);
+            return Task.CompletedTask;
         }
 
-        public void ReloadTask()
+        private Task PeopleViewShow()
         {
-            logger.LogDebug("Calling ReloadTask");
-            MyTask = Task.Delay(3000);
+            SelectedLeftView = serviceProvider.GetRequiredService<PeopleView>();
+            Status = $"Opened {nameof(PeopleView)}";
+
+            return Task.CompletedTask;
+        }
+
+        private Task PersonViewShow()
+        {
+            SelectedRightView = serviceProvider.GetRequiredService<PersonView>();
+            Status = $"Opened {nameof(PersonView)}";
+
+            return Task.CompletedTask;
+        }
+        private Task GraphViewShow()
+        {
+            SelectedRightView = serviceProvider.GetRequiredService<GraphView>();
+            Status = $"Opened {nameof(GraphView)}";
+
+            return Task.CompletedTask;
         }
     }
 }

@@ -4,9 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:WpfWithWebApi.Wpf"
+             xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+             xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/mytheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Window">
                 <Setter Property="FontSize" Value="16" />
             </Style>

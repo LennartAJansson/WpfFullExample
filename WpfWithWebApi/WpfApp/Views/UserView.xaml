@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WpfWithWebApi.Wpf.Views.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfWithWebApi.Wpf.Views"
+             xmlns:converters="clr-namespace:WpfWithWebApi.Wpf.Converters"
+             xmlns:viewmodels="clr-namespace:WpfWithWebApi.Wpf.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:UserViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel x:Name="Create" Orientation="Vertical" Visibility="{Binding ShowCreate, Converter={StaticResource boolToVisibilityConverter}}" >
+            <Button Content="Login" Width="40" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel x:Name="Login" Orientation="Vertical" Visibility="{Binding ShowLogin, Converter={StaticResource boolToVisibilityConverter}}" >
+            <Button Content="Login" Width="40" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel x:Name="ChangePassword" Orientation="Vertical" Visibility="{Binding ShowChange, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button Content="Change" Width="40" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel x:Name="Logout" Orientation="Vertical" Visibility="{Binding ShowLogout, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button Content="Logout" Width="40" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel x:Name="Reset" Orientation="Vertical" Visibility="{Binding ShowReset, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button Content="Reset" Width="40" HorizontalAlignment="Left"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

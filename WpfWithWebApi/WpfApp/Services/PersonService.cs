@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 using WpfWithWebApi.Model;
+using WpfWithWebApi.Wpf.Extensions;
 
 namespace WpfWithWebApi.Wpf.Services
 {

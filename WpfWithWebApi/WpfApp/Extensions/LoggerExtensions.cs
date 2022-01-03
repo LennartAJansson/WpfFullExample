@@ -1,7 +1,9 @@
 ﻿using System.Net.Http;
 
+using Microsoft.Extensions.Logging;
+
 //Use Microsofts namespace for logging to avoid having to add your own usings everywhere logextension is going to be used
-namespace Microsoft.Extensions.Logging
+namespace WpfWithWebApi.Wpf.Extensions
 {
     public static class LoggerExtensions
     {

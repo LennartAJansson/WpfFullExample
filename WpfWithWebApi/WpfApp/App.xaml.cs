@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using System.Windows;
 
-using System.Windows;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 using WpfWithWebApi.Wpf.Configuration;
 using WpfWithWebApi.Wpf.Services;
@@ -17,26 +18,24 @@ namespace WpfWithWebApi.Wpf
     {
         private readonly IHost host;
 
-        public App()
-        {
+        public App() =>
+            //Microsoft.Windows.Themes.ThemeColor.Metallic
             host = Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) => ConfigureAppServices(context, services))
+                .ConfigureAppConfiguration(builder => builder.AddJsonFile("WindowsInfo.json", optional: true))
+                .ConfigureServices((context, services) => services
+                    .AddApplicationConfigurations(context)
+                    .AddApplicationViewModels()
+                    .AddApplicationViews()
+                    .AddApplicationServices())
                 .Build();
-        }
-
-        private static void ConfigureAppServices(HostBuilderContext context, IServiceCollection services)
-        {
-            services.AddApplicationConfiguration(context);
-            services.AddApplicationViewModels();
-            services.AddApplicationServices();
-            services.AddTransient<MainWindow>();
-        }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
             await host.StartAsync();
 
-            host.Services.GetRequiredService<MainWindow>().Show();
+            host.Services
+                .GetRequiredService<MainWindow>()
+                .Show();
 
             base.OnStartup(e);
         }
