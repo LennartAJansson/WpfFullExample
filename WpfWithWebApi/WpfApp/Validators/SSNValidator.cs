@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 
 namespace WpfWithWebApi.Wpf.Validators
 {

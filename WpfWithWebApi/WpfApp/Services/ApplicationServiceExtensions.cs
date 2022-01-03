@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 using WpfWithWebApi.Wpf.Configuration;
 
@@ -32,9 +32,7 @@ namespace WpfWithWebApi.Wpf.Services
                 .GetSection(HttpClientSettings.SectionName)
                 .Get<HttpClientSettings>();
 
-            ICurrentUser currentUser = serviceProvider.GetService<ICurrentUser>();
-
-            throw new NotImplementedException();
+            client.BaseAddress = new Uri(options.Url);
         }
 
         private static void ConfigureSecureHttpClientOptions(IServiceProvider serviceProvider, HttpClient client)

@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 
 namespace WpfWithWebApi.Wpf.Services
 {
@@ -51,14 +51,7 @@ namespace WpfWithWebApi.Wpf.Services
             //Sets User.IsValid, User.Refreshed, User.Token and User.RefreshToken
             return User.IsValid;
         }
-        private void DoRefresh(object state)
-        {
-            User = userService.RefreshAsync(User).Result;
-            //Sets User.IsValid, User.Refreshed, User.Token and User.RefreshToken
-            //When User is set it will automatically trigger the event for anyone that subscribes
-            //Meaning that if the Token or IsValid for any reason is invalid all of a sudden,
-            //then a notification will be sent about it to all
-        }
+        private void DoRefresh(object state) => User = userService.RefreshAsync(User).Result;//Sets User.IsValid, User.Refreshed, User.Token and User.RefreshToken//When User is set it will automatically trigger the event for anyone that subscribes//Meaning that if the Token or IsValid for any reason is invalid all of a sudden,//then a notification will be sent about it to all
     }
 }
 

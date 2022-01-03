@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace WpfWithWebApi.Wpf.Models
+namespace WpfWithWebApi.Model
 {
     public class SocialSecurityNumber
     {
@@ -10,7 +10,7 @@ namespace WpfWithWebApi.Wpf.Models
         public string SSN
         {
             get => ssn;
-            set { SetSSN(value); }
+            set => SetSSN(value);
         }
 
         private string ssn;
@@ -19,10 +19,7 @@ namespace WpfWithWebApi.Wpf.Models
 
         public string Identification { get; private set; }
 
-        public SocialSecurityNumber(string ssn)
-        {
-            SetSSN(ssn);
-        }
+        public SocialSecurityNumber(string ssn) => SetSSN(ssn);
 
         private void SetSSN(string ssn)
         {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 using WpfWithWebApi.Wpf.Services;
 
 namespace WpfWithWebApi.Wpf.ViewModels

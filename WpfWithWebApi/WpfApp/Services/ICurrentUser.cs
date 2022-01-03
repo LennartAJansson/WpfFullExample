@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 
 namespace WpfWithWebApi.Wpf.Services
 {

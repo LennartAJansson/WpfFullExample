@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+
+using Microsoft.Extensions.Logging;
 
 using WpfWithWebApi.Model;
 using WpfWithWebApi.Wpf.Extensions;
@@ -13,16 +13,18 @@ namespace WpfWithWebApi.Wpf.Services
     public class PersonService : IPersonService
     {
         private readonly ILogger<PersonService> logger;
-        private readonly HttpClient client;
+        private readonly IHttpClientFactory httpClientFactory;
 
-        public PersonService(ILogger<PersonService> logger, HttpClient client)
+        public PersonService(ILogger<PersonService> logger, IHttpClientFactory httpClientFactory)
         {
             this.logger = logger;
-            this.client = client;
+            this.httpClientFactory = httpClientFactory;
         }
 
         public async Task<IEnumerable<Person>> GetAllPeopleAsync()
         {
+            HttpClient client = httpClientFactory.CreateClient("UnsecureHttpClient");
+
             HttpRequestMessage request = new();
             logger.LogHttpRequest(LogLevel.Information, request, "Request to web api");
 
@@ -39,6 +41,8 @@ namespace WpfWithWebApi.Wpf.Services
 
         public async Task<Person> GetPersonAsync(object id)
         {
+            HttpClient client = httpClientFactory.CreateClient("UnsecureHttpClient");
+
             HttpRequestMessage request = new();
             logger.LogHttpRequest(LogLevel.Information, request, "Request to web api");
 

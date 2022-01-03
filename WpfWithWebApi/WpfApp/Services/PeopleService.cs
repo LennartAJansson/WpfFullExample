@@ -1,40 +1,63 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
-using WpfWithWebApi.Wpf.Models;
+using Microsoft.Extensions.Logging;
+
+using WpfWithWebApi.Model;
+using WpfWithWebApi.Wpf.Extensions;
 
 namespace WpfWithWebApi.Wpf.Services
 {
     public class PeopleService : IPeopleService
     {
-        public Task<IEnumerable<Person>> GetPeople()
+        private readonly ILogger<PeopleService> logger;
+        private readonly IHttpClientFactory httpClientFactory;
+
+        public PeopleService(ILogger<PeopleService> logger, IHttpClientFactory httpClientFactory)
         {
-            IEnumerable<Person> p = new List<Person>
-            {
-                new Person()
-                {
-                    Id=1,
-                    Ssn="EnterASSNHere",
-                    Firstname="Firstname",
-                    Lastname="Lastname",
-                    Address="Address",
-                    Postalcode="12345",
-                    City="City",
-                    Email="a@b.c",
-                    Telephone="+4612345678"},
-                new Person()
-                {
-                    Id=2,
-                    Ssn="EnterASSNHere",
-                    Firstname="FirstName",
-                    Lastname="Lastname",
-                    Address="Address",
-                    Postalcode="12345",
-                    City="City",
-                    Email="a@b.c",
-                    Telephone="+4612345678"}
-            };
-            return Task.FromResult(p);
+            this.logger = logger;
+            this.httpClientFactory = httpClientFactory;
+        }
+
+        public async Task<IEnumerable<Person>> GetPeopleAsync()
+        {
+            HttpClient client = httpClientFactory.CreateClient("UnsecureHttpClient");
+            string path = "people";
+            HttpRequestMessage request = new(HttpMethod.Get, $"{client.BaseAddress}{path}");
+            logger.LogHttpRequest(LogLevel.Information, request, "Request to web api");
+
+            HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+
+            logger.LogHttpResponse(LogLevel.Information, response, "Response from web api");
+
+            string json = await response.Content.ReadAsStringAsync();
+            logger.LogInformation("Response json: {json}", json);
+
+            IEnumerable<Person> peopleResponse = JsonSerializer.Deserialize<IEnumerable<Person>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return peopleResponse;
+        }
+
+        public async Task<Person> GetPersonAsync(int id)
+        {
+            HttpClient client = httpClientFactory.CreateClient("UnsecureHttpClient");
+            string path = $"people/{id}";
+            HttpRequestMessage request = new(HttpMethod.Get, $"{client.BaseAddress}{path}");
+            logger.LogHttpRequest(LogLevel.Information, request, "Request to web api");
+
+            HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            logger.LogHttpResponse(LogLevel.Information, response, "Response from web api");
+
+            string json = await response.Content.ReadAsStringAsync();
+            logger.LogInformation("Response json: {json}", json);
+
+            Person personResponse = JsonSerializer.Deserialize<Person>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return personResponse;
         }
     }
 }

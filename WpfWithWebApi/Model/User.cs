@@ -1,8 +1,9 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-
+﻿
 using System;
 
-namespace WpfWithWebApi.Wpf.Models
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+
+namespace WpfWithWebApi.Model
 {
     public class User : ObservableObject
     {

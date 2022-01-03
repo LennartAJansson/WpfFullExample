@@ -3,7 +3,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 using WpfWithWebApi.Wpf.Services;
 
 namespace WpfWithWebApi.Wpf.ViewModels
@@ -38,7 +38,7 @@ namespace WpfWithWebApi.Wpf.ViewModels
             this.logger = logger;
             this.service = service;
             this.currentPerson = currentPerson;
-            People = new ObservableCollection<Person>(service.GetPeople().Result);
+            People = new ObservableCollection<Person>(service.GetPeopleAsync().Result);
         }
     }
 #pragma warning restore IDE0052 // Remove unread private members

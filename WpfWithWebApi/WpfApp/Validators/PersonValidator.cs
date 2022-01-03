@@ -1,14 +1,12 @@
 ﻿using FluentValidation;
 
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 
 namespace WpfWithWebApi.Wpf.Validators
 {
     public class PersonValidator : AbstractValidator<Person>
     {
-        public PersonValidator()
-        {
-            RuleFor(person => person)
+        public PersonValidator() => RuleFor(person => person)
                 .Cascade(CascadeMode.Continue)
                 .ChildRules(validator =>
                 {
@@ -45,6 +43,5 @@ namespace WpfWithWebApi.Wpf.Validators
                         .Must(socialSecurityNumber => socialSecurityNumber.IsValid)
                         .WithMessage("Social security number must be valid");
                 });
-        }
     }
 }

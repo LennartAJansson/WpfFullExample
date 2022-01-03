@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using WpfWithWebApi.Model;
+using WpfWithWebApi.WebApi.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,27 +13,24 @@ namespace WpfWithWebApi.WebApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class PeopleController : ControllerBase
     {
+        private readonly ILogger<PeopleController> logger;
+        private readonly IPeopleService peopleService;
+
+        public PeopleController(ILogger<PeopleController> logger, IPeopleService peopleService)
+        {
+            this.logger = logger;
+            this.peopleService = peopleService;
+        }
+
         // GET: api/<PersonController>
         [HttpGet]
-        public IEnumerable<Person> Get()
-        {
-            List<Person> lst = new()
-            {
-                new Person { Id = 1, Name = "Adam" },
-                new Person { Id = 2, Name = "Bertil" },
-                new Person { Id = 3, Name = "Caesar" }
-            };
-            return lst.Select(a => a);
-        }
+        public async Task<IEnumerable<Person>> GetAsync() => await peopleService.GetPeople();
 
         // GET api/<PersonController>/5
         [HttpGet("{id}")]
-        public Person Get(int id)
-        {
-            return new Person { Id = id, Name = "Adam" };
-        }
+        public async Task<Person> GetAsync(int id) => await peopleService.GetPerson(id);
 
         //TODO Define Post method in api
         // POST api/<PersonController>

@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Security;
+
+using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-using System.Security;
-
-using WpfWithWebApi.Wpf.Models;
+using WpfWithWebApi.Model;
 using WpfWithWebApi.Wpf.Services;
 
 namespace WpfWithWebApi.Wpf.ViewModels
@@ -29,10 +29,7 @@ namespace WpfWithWebApi.Wpf.ViewModels
             currentPerson.PersonChanged += CurrentPerson_PersonChanged;
         }
 
-        private void CurrentPerson_PersonChanged(Person person)
-        {
-            Person = person;
-        }
+        private void CurrentPerson_PersonChanged(Person person) => Person = person;
     }
 #pragma warning restore IDE0052 // Remove unread private members
 }
